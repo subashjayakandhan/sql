@@ -1,0 +1,225 @@
+# sql
+sql project patientname
+
+SQL> create table patientsdetails
+  2  (
+  3  si number(10),
+  4  patientsname varchar(20),
+  5  age number(30),
+  6  gender varchar(10)
+  7  );
+
+Table created.
+SQL> desc  patientsdetails;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SI                                                 NUMBER(10)
+ PATIENTSNAME                                       VARCHAR2(20)
+ AGE                                                NUMBER(30)
+ GENDER                                             VARCHAR2(10)
+
+SQL> insert into patientsdetails values(1,'Kishore',26,'male');
+
+1 row created.
+
+SQL> insert into patientsdetails values(2,'pooja',20,'female');
+
+1 row created.
+
+SQL> insert into patientsdetails values(3,'ganesh',30,'male');
+
+1 row created.
+
+SQL> insert into patientsdetails values(4,'ramya',28,'female');
+
+1 row created.
+
+SQL> insert into patientsdetails values(5,'nirmal',30,'male');
+
+1 row created.
+
+SQL> select * from patientsdetails;
+
+        SI PATIENTSNAME                AGE GENDER
+---------- -------------------- ---------- ----------
+         1 Kishore                      26 male
+         2 pooja                        20 female
+         3 ganesh                       30 male
+         4 ramya                        28 female
+         5 nirmal                       30 male
+
+SQL> select * from patientsdetails;
+
+        SI PATIENTSNAME                AGE GENDER
+---------- -------------------- ---------- ----------
+         1 Kishore                      26 male
+         2 pooja                        20 female
+         3 ganesh                       30 male
+         4 ramya                        28 female
+         5 nirmal                       30 male
+
+SQL> add(weight number(38));
+SP2-0734: unknown command beginning "add(weight..." - rest of line ignored.
+SQL> alter table patientsdetails
+  2  add(weight number(90));
+add(weight number(90))
+                  *
+ERROR at line 2:
+ORA-01727: numeric precision specifier is out of range (1 to 38)
+
+
+SQL> alter table patientsdetails
+  2  add(weight number(38));
+
+Table altered.
+
+SQL> select * from patientsdetails;
+
+        SI PATIENTSNAME                AGE GENDER         WEIGHT
+---------- -------------------- ---------- ---------- ----------
+         1 Kishore                      26 male
+         2 pooja                        20 female
+         3 ganesh                       30 male
+         4 ramya                        28 female
+         5 nirmal                       30 male
+
+SQL> update patientsdetails
+  2  set weight='45'
+  3  where si=1;
+
+1 row updated.
+
+SQL> update patientsdetails
+  2  set weight='65'
+  3  where si=2;
+
+1 row updated.
+
+SQL> update patientsdetails
+  2  set weight='70'
+  3  where si=3;
+
+1 row updated.
+
+SQL> update patientsdetails
+  2  set weight='65'
+  3  where si=4;
+
+1 row updated.
+
+SQL> update patientsdetails
+  2  set weight='55'
+  3  where si=5;
+
+1 row updated.
+
+SQL> select * from patientsdetails;
+
+        SI PATIENTSNAME                AGE GENDER         WEIGHT
+---------- -------------------- ---------- ---------- ----------
+         1 Kishore                      26 male               45
+         2 pooja                        20 female             65
+         3 ganesh                       30 male               70
+         4 ramya                        28 female             65
+         5 nirmal                       30 male               55
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from patientsname
+  2  where si=5;
+delete from patientsname
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> delete from patientsdetails
+  2  where si=5;
+
+1 row deleted.
+
+SQL> select * from patientsdetails;
+
+        SI PATIENTSNAME                AGE GENDER         WEIGHT
+---------- -------------------- ---------- ---------- ----------
+         1 Kishore                      26 male               45
+         2 pooja                        20 female             65
+         3 ganesh                       30 male               70
+         4 ramya                        28 female             65
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from patientsdetails;
+
+        SI PATIENTSNAME                AGE GENDER         WEIGHT
+---------- -------------------- ---------- ---------- ----------
+         1 Kishore                      26 male               45
+         2 pooja                        20 female             65
+         3 ganesh                       30 male               70
+         4 ramya                        28 female             65
+         5 nirmal                       30 male               55
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select count(gender),gender from patientsdetails
+  2  groupby gender
+  3  order by count(gender)asc;
+groupby gender
+        *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select count(gender),gender from patientsdetails
+  2  group by gender
+  3  order by count(gender)asc;
+
+COUNT(GENDER) GENDER
+------------- ----------
+            2 female
+            3 male
+
+SQL> select * from patientsdetails
+  2  order by age asc;
+
+        SI PATIENTSNAME                AGE GENDER         WEIGHT
+---------- -------------------- ---------- ---------- ----------
+         2 pooja                        20 female             65
+         1 Kishore                      26 male               45
+         4 ramya                        28 female             65
+         5 nirmal                       30 male               55
+         3 ganesh                       30 male               70
+
+SQL> select * from patientsdetails
+  2  order by weight asc;
+
+        SI PATIENTSNAME                AGE GENDER         WEIGHT
+---------- -------------------- ---------- ---------- ----------
+         1 Kishore                      26 male               45
+         5 nirmal                       30 male               55
+         2 pooja                        20 female             65
+         4 ramya                        28 female             65
+         3 ganesh                       30 male               70
+
+SQL> select count(age),age from patientsdetails
+  2  group by age
+  3  order by age asc;
+
+COUNT(AGE)        AGE
+---------- ----------
+         1         20
+         1         26
+         1         28
+         2         30
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
