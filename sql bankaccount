@@ -1,0 +1,116 @@
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> create table bankaccount
+  2  (
+  3  AccNumber number(15),
+  4  Acc Holder Name varchar(30),
+  5  phonenumber number(10)
+  6  );
+Acc Holder Name varchar(30),
+           *
+ERROR at line 4:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table bankaccount
+  2  (
+  3  AccNumber number(15),
+  4  Acc Holder Name varchar(30),
+  5
+SQL>
+SQL> create table bankaccount
+  2  (
+  3  sinumber number(10),
+  4  AccNumber number(15),
+  5  AccHolderName varchar(30),
+  6  phonenumber number(10)
+  7  );
+
+Table created.
+
+SQL> desc bankaccount;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SINUMBER                                           NUMBER(10)
+ ACCNUMBER                                          NUMBER(15)
+ ACCHOLDERNAME                                      VARCHAR2(30)
+ PHONENUMBER                                        NUMBER(10)
+
+SQL> insert into bankaccount values(1,12345678,'sachin'9087654321);
+insert into bankaccount values(1,12345678,'sachin'9087654321)
+                                                  *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into bankaccount values(1,12345678,'sachin',9087654321);
+
+1 row created.
+
+SQL> insert into bankaccount values(2,12345623,'yuvi',9087654333);
+
+1 row created.
+
+SQL> insert into bankaccount values(3,12345679,'hardik',9087654328);
+
+1 row created.
+
+SQL> insert into bankaccount values(4,12345671,'dhoni',9087654322);
+
+1 row created.
+
+SQL> insert into bankaccount values(5,12345675,'ishan',9087654327);
+
+1 row created.
+
+SQL> insert into bankaccount values(6,12345676,'starck',9087654320);
+
+1 row created.
+
+SQL> insert into bankaccount values(7,12345677,'maxi',9087654332);
+
+1 row created.
+
+SQL> insert into bankaccount values(8,12345678,'bazz',9087654326);
+
+1 row created.
+
+SQL> select * from bankaccount;
+
+  SINUMBER  ACCNUMBER ACCHOLDERNAME                  PHONENUMBER
+---------- ---------- ------------------------------ -----------
+         1   12345678 sachin                          9087654321
+         2   12345623 yuvi                            9087654333
+         3   12345679 hardik                          9087654328
+         4   12345671 dhoni                           9087654322
+         5   12345675 ishan                           9087654327
+         6   12345676 starck                          9087654320
+         7   12345677 maxi                            9087654332
+         8   12345678 bazz                            9087654326
+
+8 rows selected.
+
+SQL> delete from bankaccount
+  2  where sinumber=8;
+
+1 row deleted.
+
+SQL> select * from bankaccount;
+
+  SINUMBER  ACCNUMBER ACCHOLDERNAME                  PHONENUMBER
+---------- ---------- ------------------------------ -----------
+         1   12345678 sachin                          9087654321
+         2   12345623 yuvi                            9087654333
+         3   12345679 hardik                          9087654328
+         4   12345671 dhoni                           9087654322
+         5   12345675 ishan                           9087654327
+         6   12345676 starck                          9087654320
+         7   12345677 maxi                            9087654332
+
+7 rows selected.
+SQL> commit;
+
+Commit complete.
